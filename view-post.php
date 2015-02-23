@@ -42,30 +42,25 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-    <html>
+<html>
 <head>
     <title>
-    A blog application
-    <?php echo htmlspecialchars($rwo['title'],ENT_HTML5,'UTF-8')?>
+        A blog application |
+        <?php echo htmlEscape($row['title']) ?>
     </title>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 </head>
 <body>
-<h1>Blog title</h1>
-<p>
-    This paragraph summarises what the blog is about.
-</p>
+<?php require 'templates/title.php' ?>
+
 <h2>
-    <?php echo htmlspecialchars($row['title'],ENT_HTML5,'utf-8')?>
+    <?php echo htmlEscape($row['title']) ?>
 </h2>
 <div>
-    <?php echo $row['created_at']?>
+    <?php echo $row['created_at'] ?>
 </div>
 <p>
-    <?php echo htmlspecialchars($row['body'],ENT_HTML5,'utf-8')?>
+    <?php echo htmlEscape($row['body']) ?>
 </p>
 </body>
-
-
-
 </html>
