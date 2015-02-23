@@ -6,11 +6,11 @@
  * Time: 3:48 PM
  */
 
-//get the pdo ds string
-$root = realpath(__DIR__);
-$database = $root . '/data/data.sqlite';
-$dsn = 'sqlite:'. $database;
+require_once 'lib/common.php';
 
+//get the pdo dsn string
+$root = getRootPath();
+$database = getDatabasePath();
 $error ='';
 
 //a security measure, to avoid anyone resetting the database if it already exists
@@ -45,7 +45,7 @@ if(!$error) {
 //connect to the new database and try to run the sql commands
 if(!$error)
 {
-    $pdo = new PDO($dsn);
+    $pdo = getPDO();
     $result = $pdo->exec($sql);
     if($result === false){
         $error = 'Could not run SQL:' . print_r($pdo->errorInfo(),true);
